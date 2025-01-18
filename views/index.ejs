@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastebin</title>
+</head>
+<body>
+    <h1>Add text</h1>
+    <form action="/" method="POST">
+        <textarea name="text" rows="5" placeholder="Your text here" required></textarea><br>
+        <button type="submit">Add</button>
+    </form>
+    <br>
+
+    <h2>Text List</h2>
+    <ul>
+        <% if (list.length > 0) { %>
+            <% list.forEach(text => { %>
+                <li>
+                    <% if (text.content.length > 20) { %>
+                        <a href="/text/<%= text.id %>"><%= text.content.substring(0, 20) + '...' %></a>
+                    <% } else { %>
+                        <%= text.content %>
+                    <% } %>
+                </li>
+            <% }); %>
+        <% } else { %>
+            <p>No text in the list yet.</p>
+        <% } %>
+    </ul>    
+</body>
+</html>
