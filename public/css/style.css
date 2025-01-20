@@ -1,0 +1,33 @@
+body {
+    background-color: lightblue;
+}
+
+h2 {
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.list-group-item {
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 1px;
+    border-color: black;
+    background-color: #4B0082;
+    color: #FFFFFF;
+}
+
+#paragraph {
+    width: fit-content;
+    margin: auto;
+    padding: 1%;
+}
+
+#button {
+    margin-top: 10px;
+}
+
+#textlink {
+    color: #FFFFFF;
+    text-decoration: none;
+}
