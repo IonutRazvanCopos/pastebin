@@ -9,13 +9,13 @@
 </head>
 <body>
     <h1 class="text-center fw-light">Add text</h1>
-    <form action="/" method="POST" class="container mt-5r">
+    <form action="/text" method="POST" class="container mt-5r">
         <textarea name="text" rows="5" class="form-control" placeholder="Your text here" required></textarea><br>
         <button type="submit" class="btn btn-primary">Add</button>
     </form>
     <br>
     <div class="text-center">
-        <h2 class=" text-center rounded-pill text-bg-info">Text List</h2>
+        <h2 class="text-center rounded-pill text-bg-info">Text List</h2>
         <ul class="list-group text-center">
             <% if (list.length > 0) { %>
                 <% list.forEach(text => { %>

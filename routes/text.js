@@ -1,14 +1,13 @@
 const express = require('express');
+const router = express.Router();
 
 module.exports = (db) => {
-    const router = express.Router();
-
     router.post('/', async (req, res) => {
         const inputText = req.body.text;
         if (inputText) {
             await db.query('INSERT INTO texts(content) VALUES($1)', [inputText]);
         }
-        res.redirect('/');
+        res.redirect('/text');
     });
     
     router.get('/', async (req, res) => {
