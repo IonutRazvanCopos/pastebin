@@ -5,15 +5,15 @@ module.exports = (db) => {
     router.post('/', async (req, res) => {
         const inputText = req.body.text;
         if (inputText) {
-            await db.query('INSERT INTO texts(content) VALUES($1)', [inputText]);
+            await db.createText(inputText);
         }
         res.redirect('/text');
     });
     
     router.get('/', async (req, res) => {
         try {
-            const result = await db.query('SELECT * FROM texts');
-            res.render('index', { list: result.rows });
+            const result = await db.selectAllTexts();
+            res.render('index', { list: result });
         } catch (err) {
             console.error('Database query error:', err);
             res.status(500).send('Internal Server Error');
@@ -23,11 +23,11 @@ module.exports = (db) => {
     router.get('/:id', async (req, res) => {
         const { id } = req.params;
         try {
-            const result = await db.query('SELECT content FROM texts WHERE id = $1', [id]);
-            if (result.rows.length === 0) {
+            const result = await db.selectTextWithId(id);
+            if (!result) {
                 return res.status(404).send('Text not found');
             }
-            res.render('text', { fullText: result.rows[0].content });
+            res.render('text', { fullText: result.content });
         } catch (err) {
             console.error('Database query error:', err);
             res.status(500).send('Internal Server Error');
