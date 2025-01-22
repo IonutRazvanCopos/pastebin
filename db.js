@@ -8,6 +8,21 @@ const pool = new Pool({
     password: 'parola',
 });
 
+async function initializeDB() {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS texts (
+                id SERIAL PRIMARY KEY,
+                content TEXT NOT NULL
+            );
+        `);
+    } catch (error) {
+        console.error('Error initializing database:', error);
+    }
+}
+
+initializeDB();
+
 async function createText(content) {
     const query = 'INSERT INTO texts(content) VALUES($1)';
     await pool.query(query, [content]);
